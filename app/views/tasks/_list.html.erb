@@ -1,0 +1,9 @@
+<% if @tasks.present? %>
+
+  <% @tasks.each do |task| %>
+    <%= render 'item', task: task %>
+  <% end %>
+
+<% else %>
+  <%= render 'layouts/no_results' %>
+<% end %>

@@ -1,0 +1,23 @@
+<div class=task data-id=<%= task.id %> data-done=<%= task.done %>>
+  <i class="fa fa-spinner fa-pulse"></i>
+  <div class=checkbox>
+    <%= form_for task, remote: true do |f| %>
+      <%= f.label :done, for: "task_#{ task.id }_done" do %>
+        <%= f.check_box :done, id: "task_#{ task.id }_done", data: { task_id: task.id } %>
+        <i class="fa fa-square-o"></i>
+        <i class="fa fa-check-square-o"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class=content>
+    <div class=datetime><%= task.created_at.strftime('%d/%m/%Y %H:%M') %></div>
+    <%= task.content %>
+  </div>
+  <div class=trash>
+    <%= link_to task, method: :delete, remote: true, data: { task_id: task.id } do %>
+      <button>
+        <i class="fa fa-trash"></i>
+      </button>
+    <% end %>
+  </div>
+</div>

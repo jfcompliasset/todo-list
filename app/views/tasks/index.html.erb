@@ -1,0 +1,17 @@
+<div class=container>
+
+  <div class=logo>
+    <h1>TODO</h1>
+    <h2>LIST</h2>
+  </div>
+  
+  <%= form_for @task, remote: true, html: { autocomplete: :off } do |f| %>
+    <%= f.text_field :content, required: true, maxlength: 255, placeholder: 'Digite aqui sua tarefa...'%>
+    <div id=enter_hint class="hint hidden">Pressione enter para enviar</div>
+  <% end %>
+
+  <div id=tasks-aria data-need-clear="<%= raw @tasks.blank? %>">
+    <%= render 'list' %>
+  </div>
+
+</div>

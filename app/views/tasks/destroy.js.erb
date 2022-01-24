@@ -1,0 +1,5 @@
+setTimeout(() => {
+  $('.task[data-id=<%= @task.id %>]').slideUp(300, () => {
+    $('.task[data-id=<%= @task.id %>]').remove()
+  })
+}, 300)

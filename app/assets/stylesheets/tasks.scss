@@ -1,0 +1,130 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  padding: 15px;
+}
+
+input[type=text] {
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+
+  &:focus {
+    border-color: rgba(0, 132, 209, 0.5);
+    box-shadow: 0 0 0 2px skyblue;
+  }
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.hint {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 0.7rem;
+  padding: 3px;
+  text-align: center;
+
+  opacity: 1;
+  transition: opacity 300ms;
+  &.hidden { opacity: 0; }
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.logo {
+  text-align: center;
+  line-height: 10px;
+  margin: 10px 0;
+
+  h1 {
+    font-weight: 200;
+  }
+
+  h2 {
+    color: skyblue;
+    font-size: 0.7rem;
+  }
+}
+
+.task {
+  margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
+  .content {
+    padding-bottom: 5px;
+    color: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover {
+      word-break: break-all;
+    }
+
+    position: relative;
+    .datetime {
+      position: absolute;
+      top: calc(100% - 9px);
+      color: rgba(0, 0, 0, 0.2);
+      font-size: 0.5rem;
+    }
+  }
+  .checkbox {
+    .fa-square-o, .fa-check-square-o { cursor: pointer; }
+    .fa-square-o { color: rgba(0, 0, 0, 0.3) }
+    .fa-check-square-o { color: rgb(59, 175, 59) }
+    input {
+      display: none;
+      & ~ .fa-check-square-o { display: none; }
+      &:checked ~ .fa {
+        &.fa-check-square-o { display: unset; }
+        &.fa-square-o { display: none; }
+      }
+    }
+  }
+  .trash {
+    text-align: right;
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border-radius: 5px;
+      color: rgb(197, 62, 62);
+    }
+  }
+  
+  position: relative;
+  transition: opacity 300ms;
+
+  .fa-spinner {
+    position: absolute;
+    right: calc(100% + 2px);
+    font-size: 0.5rem;
+    color: skyblue;
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+
+  &.block {
+    pointer-events: none;
+    opacity: 0.7;
+
+    .fa-spinner { opacity: 1; }
+  }
+}
